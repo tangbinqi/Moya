@@ -38,7 +38,7 @@ public enum Task {
     case uploadCompositeMultipartFormData(MultipartFormData, urlParameters: [String: Any])
     
     /// A "multipart/form-data" upload task set with encoded parameters.
-    case uploadMultipartFormDataEncoding([MultipartFormData], parameters: [String: Any], encoding: ParameterEncoding)
+    case uploadMultipartFormDataEncoding([MultipartFormBodyPart], parameters: [String: Any], encoding: ParameterEncoding)
     
     /// A "multipart/form-data" upload task  combined with url parameters.
     @available(*, deprecated, message: "use `uploadCompositeMultipartFormData(MultipartFormData)` instead")

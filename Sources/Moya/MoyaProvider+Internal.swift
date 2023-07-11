@@ -92,9 +92,11 @@ public extension MoyaProvider {
                 return self.sendRequest(target, request: request, callbackQueue: callbackQueue, progress: progress, completion: completion)
             case .uploadFile(let file):
                 return self.sendUploadFile(target, request: request, callbackQueue: callbackQueue, file: file, progress: progress, completion: completion)
-            case .uploadMultipartFormData(let multipartFormData), .uploadCompositeMultipartFormData(let multipartFormData, _), .uploadMultipartFormDataEncoding(let multipartBody, _, _):
+            case .uploadMultipartFormData(let multipartFormData), .uploadCompositeMultipartFormData(let multipartFormData, _):
                 return onSendUploadMultipart(multipartFormData)
-            case .uploadMultipart(let multipartFormBodyParts), .uploadCompositeMultipart(let multipartFormBodyParts, _):
+            case .uploadMultipart(let multipartFormBodyParts),
+                .uploadMultipartFormDataEncoding(let multipartFormBodyParts, _, _),
+                .uploadCompositeMultipart(let multipartFormBodyParts, _):
                 return onSendUploadMultipart(MultipartFormData(parts: multipartFormBodyParts))
             case .downloadDestination(let destination), .downloadParameters(_, _, let destination):
                 return self.sendDownloadRequest(target, request: request, callbackQueue: callbackQueue, destination: destination, progress: progress, completion: completion)
